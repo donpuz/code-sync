@@ -10,13 +10,20 @@ var groupAnagrams = function(strs) {
     // return values of map after
 
     // sort then compare approach
+    // {{a: 0, b: 1, c: 2, ...}: ["ccb", "bcc"] }
+
+    // 26 len arr and then serialize and the use that as the key
 
     const anagrams = new Map();
 
     for (const str of strs) {
-        const chars = str.split("");
-        chars.sort();
-        const key = JSON.stringify(chars)
+        const freq = new Array(26).fill(0);
+        // add to frequency array
+
+        for (const char of str) {
+            freq[char.charCodeAt(0) - 97] += 1;
+        }
+        const key = JSON.stringify(freq)
         if (!anagrams.has(key)) {
             anagrams.set(key, [str]);
         } else {
