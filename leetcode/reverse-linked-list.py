@@ -5,29 +5,20 @@
 #         self.next = next
 class Solution:
     def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        # 1 to point at none
-        # need to keep reference to next before setting 1 to point to none (or prev node)
-        
-        # prev = None
-        # curr = head
-
-        # at each iteration:
-        # set temp to curr.next
+        # prev: null | 1 -> 2 -> 3
+        # init prev
+        # below is in loop
+        # keep temp for curr.next
         # set curr.next to prev
-        # set prev = curr
-        # curr = temp
-
-        # 1 --> 2 --> 3 --> None
-        # 1 --> None , 2 --> 3 --> None | prev = 1, curr = 2
-        # 2 --> 1 --> None , 3 --> None | prev = 2, curr = 3
-        # 3 --> 2 --> 1 --> None , None | prev = 3, curr = None
+        # set prev to curr
+        # set curr to temp
 
         prev = None
-        curr = head
-        while curr is not None:
-            temp = curr.next
-            curr.next = prev
-            prev = curr
-            curr = temp
 
+        while head:
+            temp = head.next
+            head.next = prev
+            prev = head
+            head = temp
+        
         return prev
