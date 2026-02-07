@@ -6,10 +6,12 @@
 #         self.right = right
 class Solution:
     def isBalanced(self, root: Optional[TreeNode]) -> bool:
-        res = True
 
         # recurse on height, at each root check if |left - right| <= 1
         # if not set res to False
+
+        # sol with nonlocal
+        res = True
 
         def dfs(root):
             if not root:
@@ -25,3 +27,20 @@ class Solution:
         
         dfs(root)
         return res
+
+        # sol without nonlocal
+
+        # # height, balanced (bool)
+        # def dfs(root):
+        #     if not root:
+        #         return 0, True
+            
+        #     left, left_bal = dfs(root.left)
+        #     right, right_bal = dfs(root.right)
+
+        #     root_bal = left_bal and right_bal and abs(left - right) <= 1
+
+        #     return max(left, right) + 1, root_bal
+
+        # height, balanced = dfs(root)
+        # return balanced
